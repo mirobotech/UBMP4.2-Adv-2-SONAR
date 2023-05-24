@@ -1,5 +1,5 @@
 /*==============================================================================
- Project: Adv-2-SONAR                   Activity: mirobo.tech/ubmp4-adv-2
+ Project: Adv-2-SONAR                   Activity: mirobo.tech/ubmp4-advanced-2
  Date:    May 24, 2023
  
  This advanced programming activity for the mirobo.tech UBMP4 demonstrates an
