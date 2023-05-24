@@ -95,8 +95,10 @@ int main(void)
     
     while(1)
     {
+        // Get distance from SONAR module
         distance = sonar_range();   
         
+        // Display distance on LEDs
         if(distance > 20)
         {
             LATC = 0b11110000;
@@ -199,7 +201,7 @@ int main(void)
  *      148us as the timer unit instead. Each timer count can now represent one
  *      distance unit, and the program can simply count loops of the unit-length
  *      delays to determine the distance. When the pulse ends, the loop counter
- *      alread contains the distance, and no additional calculations are
+ *      already contains the distance, and no additional calculations are
  *      required. Not only is the time taken by calculations freed up, this
  *      method also uses less data memory as no additional memory registers are
  *      required during the calculations to maintain precision or match the data
@@ -265,9 +267,9 @@ int main(void)
  *      the maximum range threshold is reached. This allows the microcontroller
  *      to continue with other processing rather than waiting (pointlessly) for
  *      the now beyond-limit ECHO pulse to end. But, this creates a new problem.
- *      Can you figure out what it is?
+ *      Can you figure out what it is? Have you run into it?
  * 
- *      Here's a hint: The microcontroller receives erratic range readings.
+ *      Here's a hint: The microcontroller obtains erratic range readings.
  * 
  *      Ready for the explanation?
  * 
@@ -330,7 +332,8 @@ bool sonar_ready(void)
             distance = sonar_range(90); // Get target distance if less than 90cm
         }
 
- *      And, here is the complete, newly revised sonar_range function:
+ *      And, here is the complete, newly revised sonar_range function (you can
+ *      use it to replace the original, if you wish):
 
 // SONAR range function - return range to the closest target in cm. Set
 // maxRange to ignore objects beyond that distance from the SONAR module.
