@@ -74,7 +74,7 @@ int main(void)
     OSC_config();               // Configure oscillator for 48 MHz
     UBMP4_config();             // Configure I/O for on-board UBMP4 devices
     
-    // Enable TRIG output on TRIG pin (match TRISC settings to pin definitions)
+    // Enable output on TRIG pin (match TRISC settings to pin definitions)
     TRISCbits.TRISC0 = 0;       // Set H1 (TRIG) as output pin (H2 remains input)
     
     // Distance measurement pseudo-code
@@ -132,7 +132,7 @@ int main(void)
 
 /* Learn More -- Program Analysis Activities
  * 
- * 1.   The TRISC register controls the PORTC C data tristate buffers. What
+ * 1.   The TRISC register controls the PORTC data tristate buffers. What
  *      state must a TRIS bit be in to allow its port pin to be an output?
  * 
  * 2.   This program uses a TRISCbits operator to modify the H1 TRIS bit, but
@@ -258,7 +258,8 @@ int main(void)
  *      Where does the maxRange value originate from? It could be hard-coded
  *      into the program as a constant, or it could be passes as a variable 
  *      to the sonar_range() function to allow the program to selectively
- *      adjust its sensing distance, if necessary.
+ *      adjust its sensing distance, if necessary.  You will need to choose one
+ *      of these methods to pre-set maxRange before trying the code.
 
  *      c) Uh-oh, what's changed? The unexpected consequences of simple changes.
  * 
@@ -269,7 +270,7 @@ int main(void)
  *      the now beyond-limit ECHO pulse to end. But, this creates a new problem.
  *      Can you figure out what it is? Have you run into it?
  * 
- *      Here's a hint: The microcontroller obtains erratic range readings.
+ *      Here's a hint: The microcontroller may obtain erratic range readings.
  * 
  *      Ready for the explanation?
  * 
@@ -320,12 +321,12 @@ bool sonar_ready(void)
     return(true);               // SONAR ready
 }
 
- *      With this, the main code can do a quick call to determine if the SONAR
- *      module is ready, and get a new measurement if it is, or continue with
- *      other work if it's not. Let's put all of these concepts together in a
- *      a new range function that allows the programmer to set a limit on the
- *      distance range of interest. The function could be called with code
- *      something like this:
+ *      With this simple new function, the main code can do a quick call to
+ *      determine if the SONAR module is ready, and get a new measurement if it
+ *      is, or continue with other work if it's not. Let's put all of these
+ *      concepts together in a new range function that allows the programmer
+ *      to set a limit on the distance range of interest. The function could be
+ *      called with code something like this:
 
         if(sonar_ready())
         {
